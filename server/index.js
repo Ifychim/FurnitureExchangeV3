@@ -18,13 +18,15 @@ import postRoutes from "./routes/posts.js";
 //initialize the app with express
 const app = express();
 
+app.use(cors());
+
 //connecting express routes
 app.use('/posts', postRoutes);
 
 //setting up bodyparser to send requests
 app.use(bodyParser.json({limit: "30mb", extended:true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));
-app.use(cors());
+
 
 //connect our application to database mongodb.com/cloud/atlas
 //Environmental variable to store connection URL

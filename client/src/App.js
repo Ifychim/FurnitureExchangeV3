@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 //Components used in this app
 import {Container, AppBar, Typography, Grow, Grid} from "@material-ui/core";
 
@@ -12,8 +12,19 @@ import Posts from "./components/Posts/Posts";
 //importing styles with materialUI
 import useStyles from "./styles";
 
+//redux hooks allows us to dispatch an action
+import { useDispatch } from "react-redux";
+
+//actions
+import {getPosts} from './actions/posts'
 const App = () => {
     const classes = useStyles();
+    const dispatch = useDispatch();
+
+    useEffect(()=> {
+        dispatch(getPosts());
+    }, [dispatch]);
+    
     return (
         //Container centers everything with max width of large.
         <Container maxwidth="lg">
@@ -28,7 +39,7 @@ const App = () => {
             
             <Grow in>
                 <Container>
-                    <Grid container justify="space-between" alignItems="stretch" spacing="3">
+                    <Grid container justifyContent="space-between" alignItems="stretch" spacing={3}>
                         <Grid item xs={12} sm={7}> 
                             <Posts/>
                         </Grid>
