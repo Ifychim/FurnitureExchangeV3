@@ -8,11 +8,18 @@ export const getPosts = () => async (dispatch) => {
         //get data from backend
         const {data} = await api.fetchPosts();
         //dispatch data to reducer
-        dispatch({type: 'FETCH_ALL', payload: []});
+        dispatch({type: 'FETCH_ALL', payload: data});
     } catch (error) {
         console.log(error.message);
     }
-    //const action = {type: 'FETCH_ALL', payload: []}
+}
 
-    //dispatch(action);
+export const createPost = (post) => async (dispatch) => {
+    try {
+        const {data} = await api.createPost(post); //creating a POST api request to our backend server
+
+        dispatch({type: 'CREATE', payload: data});
+    } catch (error) {
+        console.log(error);
+    }
 }

@@ -1,13 +1,15 @@
 import React, {useState}  from "react";
 import { TextField, Button, Typography, Paper } from "@material-ui/core";
 import FileBase from "react-file-base64";
+import {useDispatch} from "react-redux";
 //importing styles
 import useStyles from "./styles";
 
+import {createPost} from '../../actions/posts';
+
 const Form = () => {
 
-    const classes = useStyles();
-
+    //State of form
     const [postData, setPostData] = useState({
         creator: '',
         title: '',
@@ -16,13 +18,24 @@ const Form = () => {
         selectedFile: ''
     });
 
-    const handleSubmit = () => {
+    const classes = useStyles();
+    const dispatch = useDispatch();
 
-    };
+    
+
+    //Once user submits, we want to send a post request with all the data user typed in.
+    const handleSubmit = (e) => {
+
+        //prevents browser from refreshing.
+        e.preventDefault();
+        
+        dispatch(createPost(postData));
+
+    }
 
     const clear = () => {
-
-    };
+        
+    }
 
     return (
 

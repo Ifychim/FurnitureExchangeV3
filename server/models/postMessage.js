@@ -21,7 +21,7 @@ const postSchema = mongoose.Schema({
     }
 });
 
-//turnig schema to a model
+//turning schema to a model
 
 const PostMessage = mongoose.model('PostMessage', postSchema);
 
