@@ -15,8 +15,9 @@ import reducers from './reducers';
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
 ReactDOM.render(
-    <App/>,
-
+    <Provider store ={store}>
+          <App/>
+    </Provider>,
     //connects to div with element of root.
     document.getElementById('root')
 );
