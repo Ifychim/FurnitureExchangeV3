@@ -1,0 +1,7 @@
+axios -> api requests
+moment -> time and date
+react-file-base64 -> convert images
+redux ->   
+redux-thunk -> async actions with redux.
+
+delete src and make new 1 w/index.js 

@@ -1,0 +1,53 @@
+9/3/2021
+
+High Priority:
+
+	Sign Up Form
+
+	--> To Register New user
+
+	Log in Form
+
+	--> To Login New User
+
+Medium Priority:
+
+	Main Landing Page
+
+Low Priority:
+	Finish Up Styling Front End
+
+
+
+9/10/2021
+
+Continue to work on things from 9/3/2021. 
+Focus on high priority items.
+
+
+9/17/2021
+
+FINISH REGISTRATION!!!!
+
+ability to post furniture
+
+ability to sort filter search posts
+
+database perspective schema for each post (info being tracked on posts)
+
+how is user accessing posts
+
+parts of website that user can see without being logged in vs logged out
+
+Create Timeline
+
+
+
+9/30/2021
+Accomplished
+
+-> Set up front end as well as redux for global state management.
+-> Link Redux to our react components
+-> Display errors from our backend in our React Forms
+-> Protected Routes (pages that only certain suers can access based on their authentications)
+-> Keep a user logged when they refresh or leave the page (I.E until they either logout or the jwt expires)
