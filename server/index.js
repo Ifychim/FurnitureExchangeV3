@@ -8,10 +8,10 @@ Dependencies
 -> to allow "import" syntax, navigate to package.json and add type:module, to run server w/nodemon add script start: nodemon index.js
 */
 
-import express from "express";
-import bodyParser from "body-parser";
-import mongoose from "mongoose";
-import cors from "cors";
+import express from 'express';
+//import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
+import cors from 'cors';
 
 import postRoutes from "./routes/posts.js";
 
@@ -24,8 +24,12 @@ app.use(cors());
 app.use('/posts', postRoutes);
 
 //setting up bodyparser to send requests
-app.use(bodyParser.json({limit: "30mb", extended:true}));
-app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));
+/*app.use(bodyParser.json({limit: "30mb", extended:true}));
+app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));*/
+
+//Body Parser library has been deprecated(express 4.16+) so we changed to app.use(express.func());
+app.use(express.json({limit: "30mb", extended:true}));
+app.use(express.urlencoded({limit: "30mb", extended:true}));
 
 
 //connect our application to database mongodb.com/cloud/atlas

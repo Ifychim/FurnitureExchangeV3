@@ -21,13 +21,15 @@ export const createPost = async (req, res) => {
     
     //req.body allows you to access data in a string or JSON object from the client side. e.g form
     const post = req.body;
-
+    console.log(post);
+    
     const newPost = new PostMessage(post);
 
     try {
         await newPost.save();
         //HTML response 201 that ensures data was created successfully "CREATED 201" -> https://www.w3.org/Protocols/HTTP/HTRESP.html
-        res.status(201).json(postMessages);
+        //res.status(201).json(postMessages);
+        res.status(201).json(newPost);
     }catch(error) {
         res.status(409).json({message:error.message});
     }
