@@ -42,11 +42,11 @@ app.get('/', (req, res) => {
     res.send("Hello to Furniture Exchange API");
 })
 //Ask About these two lines of code later
-app.get('/posts', getPosts);
-app.post('/posts', createPost);
+//app.get('/posts', getPosts);
+//app.post('/posts', createPost);
 
 //const url = 'http://localhost:5000/posts';
-app.patch('/posts',updatePost);
+//app.patch('/posts',updatePost);
 /*
 app.delete(`${url}/${id}`);
 app.patch(`${url}/${id}/likePost`);*/
