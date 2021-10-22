@@ -56,6 +56,7 @@ Accomplished
 -> Implemented update functionality (there is a bug, 404 error again)
 -> Implemented delete functionality (there is a bug, 404 error again)
 -> Implemented like functionality (there is a bug, 404 error again)
+-> add constants for action type (good practice for redux)
 -> Bug with each card's photo.
 -> Implemented mobile responsiveness
--> Deployed Application
+-> Deployed Application (Heroku to deploy the backend)
