@@ -19,7 +19,7 @@ const Post = ({ post, setCurrentId }) => {
     return (
         <Card className={classes.card}>
 
-            <CardMedia className={classes.media} image={post.selectedFile} title={post.title} component='img'/>
+            <CardMedia className={classes.media} image={post.selectedFile ||'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png' } title={post.title} component='img'/>
                  
             <div className={classes.overlay}>
                 <Typography variant ="h6">{post.creator}</Typography>
@@ -37,15 +37,12 @@ const Post = ({ post, setCurrentId }) => {
 
             <div className={classes.details}>
                 <Typography variant ="body2" color="textSecondary">{post.tags.map((tag) => `#${tag} `)}</Typography>
-                
             </div>
             
             <Typography className = {classes.title} variant ="h5" gutterBottom>{post.title}</Typography>
+            
             <CardContent>
-
                 <Typography variant ="body2" color="textSecondary" component="p" >{post.message}</Typography>
-
-                
             </CardContent>
 
             <CardActions className={classes.cardActions}>
@@ -54,12 +51,12 @@ const Post = ({ post, setCurrentId }) => {
                     &nbsp;Like&nbsp;
                     {post.likeCount}
                 </Button>
-
                 <Button size="small" color="primary" onClick={()=> dispatch(deletePost(post._id))}>
                     <DeleteIcon fontSize ="small"/>
                     Delete
                 </Button>
             </CardActions>
+
         </Card>
     );
 }
