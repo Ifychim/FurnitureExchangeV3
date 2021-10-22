@@ -51,3 +51,11 @@ Accomplished
 -> Display errors from our backend in our React Forms
 -> Protected Routes (pages that only certain suers can access based on their authentications)
 -> Keep a user logged when they refresh or leave the page (I.E until they either logout or the jwt expires)
+
+24:50 video location
+
+-> Implemented update functionality (there is a bug, 404 error again)
+-> Implemented delete functionality
+-> Implemented like functionality
+-> Implemented mobile responsiveness
+-> Deployed Application

@@ -1,6 +1,6 @@
 /*Starting point of server application.
 Dependencies 
--> body parsers (for post requests)
+-> body parsers (for post requests -> we use express due to deprecation)
 -> cors (for cross-origin requests)
 -> express (framework for creating application routing)
 -> mongoose (models for post)
@@ -9,21 +9,23 @@ Dependencies
 */
 
 import express from 'express';
-//import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-import postRoutes from "./routes/posts.js";
+/*import postRoutes from "./routes/posts.js";
+
+import PostMessage from "./models/postMessage.js";
+import { getPosts } from '../client/src/actions/posts.js';*/
+
+import { getPosts, createPost } from "./controllers/posts.js";
 
 //initialize the app with express
 const app = express();
 
 app.use(cors());
 
-//connecting express routes
-app.use('/posts', postRoutes);
-
 //setting up bodyparser to send requests
+//import bodyParser from 'body-parser';
 /*app.use(bodyParser.json({limit: "30mb", extended:true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));*/
 
@@ -31,6 +33,13 @@ app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));*/
 app.use(express.json({limit: "30mb", extended:true}));
 app.use(express.urlencoded({limit: "30mb", extended:true}));
 
+//connecting express routes
+//app.use('/posts', postRoutes);
+
+
+//Ask About these two lines of code later
+app.get('/posts', getPosts);
+app.post('/posts', createPost);
 
 //connect our application to database mongodb.com/cloud/atlas
 //Environmental variable to store connection URL
