@@ -38,7 +38,9 @@ app.use(express.urlencoded({limit: "30mb", extended:true}));
 //connecting express routes
 //app.use('/posts', postRoutes);
 
-
+app.get('/', (req, res) => {
+    res.send("Hello to Furniture Exchange API");
+})
 //Ask About these two lines of code later
 app.get('/posts', getPosts);
 app.post('/posts', createPost);
