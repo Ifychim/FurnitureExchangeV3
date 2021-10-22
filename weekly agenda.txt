@@ -58,5 +58,5 @@ Accomplished
 -> Implemented like functionality (there is a bug, 404 error again)
 -> add constants for action type (good practice for redux)
 -> Bug with each card's photo.
+-> Deployed Application (Heroku to deploy the backend Errors, Netlify to deploy front end SUCCESSFUL)
 -> Implemented mobile responsiveness
--> Deployed Application (Heroku to deploy the backend)
