@@ -12,8 +12,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
-/*import postRoutes from "./routes/posts.js";
-
+import postRoutes from "./routes/posts.js";
+/*
 import PostMessage from "./models/postMessage.js";
 import { getPosts } from '../client/src/actions/posts.js';*/
 
@@ -36,7 +36,7 @@ app.use(express.json({limit: "30mb", extended:true}));
 app.use(express.urlencoded({limit: "30mb", extended:true}));
 
 //connecting express routes
-//app.use('/posts', postRoutes);
+app.use('/posts', postRoutes);
 
 app.get('/', (req, res) => {
     res.send("Hello to Furniture Exchange API");
