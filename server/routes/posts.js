@@ -1,7 +1,7 @@
 //Routes that have to do with posts e.g cards. Will be handled with express.js
 
 import express from 'express';
-import { getPosts, createPost, updatePost, deletePost } from "../controllers/posts.js";
+import { getPosts, createPost, updatePost, deletePost, likePost } from "../controllers/posts.js";
 //updatePost
 //setting up our router
 const router = express.Router();
@@ -20,6 +20,10 @@ router.post('/', createPost);
 //error with this route!!!!
 router.patch('/:id', updatePost);
 
+//delete route for deleting posts
 router.delete('/:id', deletePost);
+
+//patch request for liking posts
+router.patch('/:id/likePost', likePost);
 
 export default router;
