@@ -53,9 +53,9 @@ Accomplished
 -> Keep a user logged when they refresh or leave the page (I.E until they either logout or the jwt expires)
 
 
--> Implemented update functionality (there is a bug, 404 error again)
--> Implemented delete functionality (there is a bug, 404 error again)
--> Implemented like functionality (there is a bug, 404 error again)
+-> Implemented update functionality 
+-> Implemented delete functionality 
+-> Implemented like functionality 
 -> Bug with each card's photo.
 -> Deployed Application Backend (Heroku to deploy the backend. There are Errors Here.)
 
@@ -65,4 +65,12 @@ Accomplished
 -> Implemented functionality to clear a form.
 -> Netlify to deploy front end (SUCCESSFUL)
 
+-> Added Docker (with help need to review this process)
 
+
+For next week
+-> Start on login/signup (PRIORITY)
+
+-> Fix continous deployment for client side code.
+-> Fix backend deployment.
+-> Reform edit functionality (more user friendly)
