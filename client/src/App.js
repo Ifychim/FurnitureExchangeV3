@@ -1,9 +1,9 @@
 import React, {useState,useEffect} from "react";
 //Components used in this app
-import {Container, AppBar, Typography, Grow, Grid} from "@material-ui/core";
+import {Container, Grow, Grid} from "@material-ui/core";
 
 //Importing Logo
-import furnitureExchange from "./images/furnitureExchange.png";
+//import furnitureExchange from "./images/furnitureExchange.png";
 
 //Importing user-created Components
 import Form from "./components/Form/Form";
@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 
 //actions
 import {getPosts} from './actions/posts'
+import Navbar from "./components/Navbar/Navbar";
 const App = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -30,14 +31,7 @@ const App = () => {
         //Container centers everything with max width of large.
         <Container maxwidth="lg">
 
-            <AppBar className={classes.appBar} position = "static" color="inherit">
-                <Typography className ={classes.heading} variant="h2" align="center">
-                    Furniture Exchange
-                </Typography>
-                <img className ={classes.img} src={furnitureExchange} alt="furnitureExchange" height="60"/>
-            </AppBar>
-
-
+            <Navbar/>
             
             <Grow in>
                 <Container>

@@ -3,5 +3,8 @@ moment -> time and date
 react-file-base64 -> convert images
 redux ->   
 redux-thunk -> async actions with redux.
+jwt-decode
+react-google-login
+react-router-dom for front-end routing.
 
 delete src and make new 1 w/index.js 

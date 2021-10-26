@@ -1,0 +1,20 @@
+Authentication types:
+
+Email Login using JSON web token.
+OAuth Google login.
+Local Storage -> if you referesh or come back to website, user is still logged in as long as token is not expired.
+
+Form is not Displayed to users who are not logged in.
+Like function is disabled to users who are not logged in.
+One like per user is allowed.
+  
+
+Sign in Page Layout
+Form to sign in (email and password fields)
+Ability to create an account (first last name, email address and password.)
+Google Sign in with your google account.
+
+
+-> zeet to deploy mongodb database, front-end and back-end.
+-> zeet introduces container deployment.
+

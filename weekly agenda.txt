@@ -70,6 +70,8 @@ Accomplished
 
 For next week
 -> Start on login/signup (PRIORITY)
+-> Recreated Navbar. Made seperate component so we can make it more complex and not clutter app.js.
+
 
 -> Fix continous deployment for client side code.
 -> Fix backend deployment.
