@@ -4,26 +4,20 @@ import express from 'express';
 import { getPosts, createPost, updatePost, deletePost, likePost } from "../controllers/posts.js";
 //updatePost
 //setting up our router
+
+//middle ware
+import auth from '../middleware/auth.js';
 const router = express.Router();
 
-//callback function for when someone visits localhost:5000/posts
+
 router.get('/', getPosts);
-router.post('/', createPost);
-
-/*router.post('/', (request, response) => {
-    console.log(request.body);
-
-});
-*/
-
-//patch route for updating existing documents 
-//error with this route!!!!
-router.patch('/:id', updatePost);
+router.post('/', auth, createPost);
+router.patch('/:id', auth, updatePost);
 
 //delete route for deleting posts
-router.delete('/:id', deletePost);
+router.delete('/:id', auth, deletePost);
 
-//patch request for liking posts
-router.patch('/:id/likePost', likePost);
+//patch request for liking posts, auth to make sure user can only like a post once for a specific id.
+router.patch('/:id/likePost', auth, likePost);
 
 export default router;
