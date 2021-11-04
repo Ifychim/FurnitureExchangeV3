@@ -4,21 +4,35 @@ import useStyles from './styles';
 //Importing Logo
 import furnitureExchange from '../../images/furnitureExchange.png';
 //Make our app multi-page using react-router-dom
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+
 
 const Navbar = () => {
     const classes = useStyles();
-
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const location = useLocation();
     //How to access data from the local storage using json.parse.
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    console.log(user);
+    
+    const logout = () => {
+        dispatch({type: 'LOGOUT'});
+
+        //
+        
+        history.push('/auth');
+        setUser(null);
+    };
 
     useEffect(() => {
         const token = user?.token;
         //jwt with manual signup
 
         setUser(JSON.parse(localStorage.getItem('profile')));
-    }, [])
+    }, [location]);
+
+
     return (
         <AppBar className={classes.appBar} position = "static" color="inherit">
             <div className={classes.brandContainer}> 
@@ -29,11 +43,11 @@ const Navbar = () => {
                 <img className ={classes.img} src={furnitureExchange} alt="furnitureExchange" height="60"/>
             </div>
             <Toolbar className={classes.toolbar}>
-                {user ? (
+                {user?.result ? (
                     <div className={classes.profile}> 
                         <Avatar className={classes.purple} alt={user.result.name} src={user.result.imageUrl}>{user.result.name.charAt(0)} </Avatar>
-                        <Typography className={classes.userName} variant="h6">{user.result.name}</Typography>
-                        <Button variant="contained" className={classes.logout} color="secondary">
+                        <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
+                        <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>
                             Logout
                         </Button>
                     </div>
