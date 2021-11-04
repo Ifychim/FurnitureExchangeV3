@@ -8,23 +8,38 @@ import {useDispatch} from "react-redux";
 import { useHistory } from 'react-router-dom';
 
 import {GoogleLogin} from 'react-google-login';
+import {signin, signup} from "../../actions/auth";
 
-//Stopped at 1 hr
+const initialState = {firstName: '', lastName: '', email: '', password: '', confirmPassword: ''};
+
 const Auth = () => {
     //const state = null;
     const classes = useStyles();
     const [showPassword, setShowPassword] = useState();
     const [isSignup, setIsSignup] = useState(false);
+    const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
 
     const history = useHistory();
     
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
+        //always do e.prevent default with submit in react
+        e.preventDefault();
+
+
+        if(isSignup){
+            //need to pass formdata(to handle data) and history(to navigate once something happens on the front end)
+            dispatch(signup(formData, history));
+        }else{
+            dispatch(signin(formData, history));
+        }
 
     };
 
-    const handleChange = () => {
-
+    //handle change, handles form data change
+    const handleChange = (e) => {
+        //spreads all properties but only change the target value
+        setFormData({...formData, [e.target.name]: e.target.value});
     };
 
     const switchMode = () => {
