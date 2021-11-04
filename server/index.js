@@ -13,6 +13,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 /*
 import PostMessage from "./models/postMessage.js";
 import { getPosts } from '../client/src/actions/posts.js';*/
@@ -27,29 +28,18 @@ dotenv.config();
 app.use(cors());
 
 //setting up bodyparser to send requests
-//import bodyParser from 'body-parser';
-/*app.use(bodyParser.json({limit: "30mb", extended:true}));
-app.use(bodyParser.urlencoded({limit: "30mb", extended:true}));*/
-
 //Body Parser library has been deprecated(express 4.16+) so we changed to app.use(express.func());
 app.use(express.json({limit: "30mb", extended:true}));
 app.use(express.urlencoded({limit: "30mb", extended:true}));
 
 //connecting express routes
 app.use('/posts', postRoutes);
+app.use('/user', userRoutes);
 
 app.get('/', (req, res) => {
     res.send("Hello to Furniture Exchange API");
 })
-//Ask About these two lines of code later
-//app.get('/posts', getPosts);
-//app.post('/posts', createPost);
 
-//const url = 'http://localhost:5000/posts';
-//app.patch('/posts',updatePost);
-/*
-app.delete(`${url}/${id}`);
-app.patch(`${url}/${id}/likePost`);*/
 
 //connect our application to database mongodb.com/cloud/atlas
 //Environmental variable to store connection URL
