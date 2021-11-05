@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {useState, useEffect} from 'react';
 import { AppBar, Avatar, Button, Typography, Toolbar } from '@material-ui/core';
 import useStyles from './styles';
@@ -33,6 +34,17 @@ const Navbar = () => {
     }, [location]);
 
 
+=======
+import React from 'react';
+import { AppBar, Typography } from '@material-ui/core';
+import useStyles from './styles';
+//Importing Logo
+import furnitureExchange from '../../images/furnitureExchange.png';
+import { Link } from 'react-router-dom';
+//component={Link} to="/" -> is where app is crashing right now, remove it to view UI.
+const Navbar = () => {
+    const classes = useStyles();
+>>>>>>> parent of b766bc5 (Refactored Navbar and home page out of App in client.  Started creating Auth component. Implemented usage of react router dom to handle routing within front-end.)
     return (
         <AppBar className={classes.appBar} position = "static" color="inherit">
             <div className={classes.brandContainer}> 
@@ -42,6 +54,7 @@ const Navbar = () => {
                 </Typography>
                 <img className ={classes.img} src={furnitureExchange} alt="furnitureExchange" height="60"/>
             </div>
+<<<<<<< HEAD
 
             <Toolbar className={classes.toolbar}>
                 {user?.result ? (
@@ -60,6 +73,8 @@ const Navbar = () => {
             </Toolbar>
 
 
+=======
+>>>>>>> parent of b766bc5 (Refactored Navbar and home page out of App in client.  Started creating Auth component. Implemented usage of react router dom to handle routing within front-end.)
         </AppBar>
     );
 };
