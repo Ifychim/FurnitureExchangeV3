@@ -7,7 +7,6 @@ import furnitureExchange from '../../images/furnitureExchange.png';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 
-
 const Navbar = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -31,8 +30,7 @@ const Navbar = () => {
 
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
-
-
+    
     return (
         <AppBar className={classes.appBar} position = "static" color="inherit">
             <div className={classes.brandContainer}> 
@@ -42,7 +40,6 @@ const Navbar = () => {
                 </Typography>
                 <img className ={classes.img} src={furnitureExchange} alt="furnitureExchange" height="60"/>
             </div>
-
             <Toolbar className={classes.toolbar}>
                 {user?.result ? (
                     <div className={classes.profile}> 
@@ -58,7 +55,6 @@ const Navbar = () => {
                     </Button>
                 )}
             </Toolbar>
-
 
         </AppBar>
     );

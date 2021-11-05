@@ -6,7 +6,6 @@ import {signin, signup } from "../controllers/users.js";
 const router = express.Router();
 
 //post route to send data to the backend. From the form to the back end.
-router.post("/signin", signin);
-router.post("/signup", signup);
-
+router.post('/signin', signin);
+router.post('/signup', signup);
 export default router;
