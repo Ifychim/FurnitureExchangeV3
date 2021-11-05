@@ -20,26 +20,34 @@ import { getPosts } from '../client/src/actions/posts.js';*/
 
 import { getPosts, createPost, updatePost, deletePost, likePost } from "./controllers/posts.js";
 import dotenv from 'dotenv';
+import { signup } from './controllers/users.js';
 
 //initialize the app with express
 const app = express();
 dotenv.config();
 
-app.use(cors());
+
 
 //setting up bodyparser to send requests
 //Body Parser library has been deprecated(express 4.16+) so we changed to app.use(express.func());
 app.use(express.json({limit: "30mb", extended:true}));
 app.use(express.urlencoded({limit: "30mb", extended:true}));
+app.use(cors());
 
 //connecting express routes
-app.use('/posts', postRoutes);
-app.use('/user', userRoutes);
+app.use("/posts", postRoutes);
+app.use("/user", userRoutes);
 
 app.get('/', (req, res) => {
     res.send("Hello to Furniture Exchange API");
 })
 
+app.get('/posts', getPosts);
+
+
+app.post('/posts', createPost);
+app.post('/user', signup);
+//app.post('/posts')
 
 //connect our application to database mongodb.com/cloud/atlas
 //Environmental variable to store connection URL

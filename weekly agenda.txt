@@ -80,4 +80,4 @@ For next week
 Tasks completed this week (11/4/2021)
 -> Finshed implementing google-o-auth (sign in sign out)
 -> Finished implementing login with form data (json web token, requires both backend and front-end work.)
--> Finished implementing middle ware
+-> Finished implementing middleware in backend
