@@ -42,6 +42,7 @@ const Navbar = () => {
                 </Typography>
                 <img className ={classes.img} src={furnitureExchange} alt="furnitureExchange" height="60"/>
             </div>
+
             <Toolbar className={classes.toolbar}>
                 {user?.result ? (
                     <div className={classes.profile}> 
@@ -57,9 +58,10 @@ const Navbar = () => {
                     </Button>
                 )}
             </Toolbar>
+
+
         </AppBar>
     );
 };
 
-//component={Link} to="/" -> is where app is crashing right now, remove it to view UI. Stopped at 15minutes.
 export default Navbar;
