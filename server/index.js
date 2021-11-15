@@ -12,33 +12,31 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 
+//routes used in app
 import postRoutes from "./routes/posts.js";
-import userRoutes from "./routes/users.js";
-/*
-import PostMessage from "./models/postMessage.js";
-import { getPosts } from '../client/src/actions/posts.js';*/
+import userRoutes from "./routes/user.js";
 
-import { getPosts, createPost, updatePost, deletePost, likePost } from "./controllers/posts.js";
 import dotenv from 'dotenv';
 
 //initialize the app with express
 const app = express();
 dotenv.config();
 
-app.use(cors());
+
 
 //setting up bodyparser to send requests
 //Body Parser library has been deprecated(express 4.16+) so we changed to app.use(express.func());
 app.use(express.json({limit: "30mb", extended:true}));
 app.use(express.urlencoded({limit: "30mb", extended:true}));
+app.use(cors());
+
 
 //connecting express routes
 app.use('/posts', postRoutes);
-app.use('/user', userRoutes);
+app.use('/', userRoutes);
 
-app.get('/', (req, res) => {
-    res.send("Hello to Furniture Exchange API");
-})
+
+
 
 
 //connect our application to database mongodb.com/cloud/atlas

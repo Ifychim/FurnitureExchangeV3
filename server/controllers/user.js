@@ -7,10 +7,11 @@ import jwt from "jsonwebtoken";
 //importing user model
 import User from "../models/user.js";
 
+
 //creating our controllers for signing in and signing up. 
 
 export const signin = async (req, res) => {
-    //need to recieve email and password from the front end using the response in the rrequest body
+    //need to recieve email and password from the front end using the response in the request body
     const {email, password} = req.body;
 
     try {
@@ -30,6 +31,7 @@ export const signin = async (req, res) => {
         }
 
         //if user exists in the data base via email and if password is correct we get the jsonwebtoke to send to front-end. Token expires in 1 hour.
+        //'Test = secret string, usually would be something else in a seperate ENV file.'
         const token =  jwt.sign({email: existingUser.email, id: existingUser._id}, 'test', {expiresIn: "1h"});
 
         res.status(200).json({result: existingUser, token});
@@ -54,10 +56,10 @@ export const signup = async (req, res) => {
 
         //check if password is not equal to confirmed password.
         if(password !== confirmPassword){
-            return res.status(404).json({message:"Passwords don't match, re-enter them."});
+            return res.status(404).json({message:"Passwords don't match."});
         }
 
-        //good to go to create the user but first hash the password. with salt
+        //good to go to create the user but first hash the password with salt(second parameter)
         const hashedPassword = await bcrypt.hash(password, 12);
         
         //create user

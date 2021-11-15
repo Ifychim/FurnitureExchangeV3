@@ -15,7 +15,7 @@ const initialState = {firstName: '', lastName: '', email: '', password: '', conf
 const Auth = () => {
     //const state = null;
     const classes = useStyles();
-    const [showPassword, setShowPassword] = useState();
+    const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
     const [formData, setFormData] = useState(initialState);
     const dispatch = useDispatch();
@@ -38,13 +38,13 @@ const Auth = () => {
 
     //handle change, handles form data change
     const handleChange = (e) => {
-        //spreads all properties but only change the target value
+        //spreads all properties but only change the target value (current input)
         setFormData({...formData, [e.target.name]: e.target.value});
     };
 
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
-        handleShowPassword(false);
+        setShowPassword(false);
 
     };
 

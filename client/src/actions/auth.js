@@ -7,6 +7,9 @@ import {AUTH} from "../constants/actionTypes";
 export const signin = (formData, history) => async (dispatch) => {
     try {
         //send data to the database/backend to authenticate/login user.
+        const {data} = await api.signIn(formData);
+
+       // dispatch({type: AUTH, data});
 
         //navigate to home page
         history.push('/');
@@ -18,6 +21,9 @@ export const signin = (formData, history) => async (dispatch) => {
 export const signup = (formData, history) => async (dispatch) => {
     try {
         //send data to the database/backend to authenticate/sign up user.
+        const {data} = await api.signUp(formData);
+
+        //dispatch({type: AUTH, data});
 
         //navigate to home page
         history.push('/');

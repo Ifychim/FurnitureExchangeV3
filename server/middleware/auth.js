@@ -16,7 +16,8 @@ const auth = async (req,res,next) => {
         if(token && isCustomAuth){
             //gives data from each specific token, user name and id. secret has to be same as initial creation.
             decodedData = jwt.verify(token, 'test');
-
+            
+            //Optional chaining 
             req.userId = decodedData?.id;
 
         }else {
@@ -29,7 +30,7 @@ const auth = async (req,res,next) => {
         next();
     } catch (error) {
         
-    };
+    }
 };
 
 export default auth;

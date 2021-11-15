@@ -79,7 +79,10 @@ For next week
 
 Tasks completed this week (11/4/2021)
 -> Finshed implementing google-o-auth (sign in sign out)
+
 -> Finished implementing login with form data (json web token, requires both backend and front-end work.)
+-> Fixed bug with signing out, now the token is deleted from local storage properly on sign-out
+-> Password Hashing in backend works with use of bcrypt library
 
 stopped 2:07:54
 
