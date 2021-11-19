@@ -7,6 +7,8 @@ import furnitureExchange from '../../images/furnitureExchange.png';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 
+import decode from "jwt-decode";
+
 const Navbar = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -26,6 +28,15 @@ const Navbar = () => {
         const token = user?.token;
         //jwt with manual signup
 
+        //handles token expiry. Check if token exists, if so, then decode it.
+        if(token){
+            const decodedToken = decode(token);
+            
+            //ms time
+            if(decodedToken.exp * 1000 < new Date().getTime()){
+                logout();
+            }
+        }
         setUser(JSON.parse(localStorage.getItem('profile')));
     }, [location]);
     

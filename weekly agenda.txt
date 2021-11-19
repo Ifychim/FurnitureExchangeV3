@@ -86,9 +86,14 @@ Tasks completed this week (11/4/2021)
 
 stopped 2:07:54
 
-location info (geo-tag)
+location info (geo-tag) (Can add geo tag to each post and filter by nearest geo-tag)
 content more direct to furniture (picture, tags, etc)
+can add notification tab that enables users to know when another user liked their post.
 
 -> Fixed some routing bugs with middle ware
 -> Made sure that people who are not logged in cannot create posts
+-> Made sure that users on cannot delete/edit/edit posts that were not made by them
+-> Handled Token Expiry (properly logs out user once token has expired)
+
 -> New bug with updating post (409 error)
+-> New bug (dislike a post does not work)
