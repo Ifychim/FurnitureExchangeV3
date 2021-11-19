@@ -97,3 +97,4 @@ can add notification tab that enables users to know when another user liked thei
 
 -> New bug with updating post (409 error)
 -> New bug (dislike a post does not work)
+-> need consistency across cards design
