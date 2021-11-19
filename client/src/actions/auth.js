@@ -29,7 +29,8 @@ export const signup = (formData, history) => async (dispatch) => {
         //navigate to home page
         history.push('/');
     } catch (error) {
+        console.log(api.signUp(formData));
         console.log(error);
-        console.log()
+        
     }
 };
