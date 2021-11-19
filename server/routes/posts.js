@@ -14,16 +14,16 @@ const router = express.Router();
 //Defines what routes are used with router
 router.get('/', getPosts);
 //router.post('/', auth , createPost);
-router.post('/',  createPost);
+router.post('/', auth, createPost);
 //router.patch('/:id', auth, updatePost);
-router.patch('/:id', updatePost);
+router.patch('/:id', auth, updatePost);
 
 //delete route for deleting posts
 //router.delete('/:id', auth, deletePost);
-router.delete('/:id', deletePost);
+router.delete('/:id', auth, deletePost);
 
 //patch request for liking posts
 //router.patch('/:id/likePost', auth, likePost);
-router.patch('/:id/likePost', likePost);
+router.patch('/:id/likePost', auth, likePost);
 
 export default router;

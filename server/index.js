@@ -32,11 +32,8 @@ app.use(cors());
 
 
 //connecting express routes
+app.use('/user', userRoutes);
 app.use('/posts', postRoutes);
-app.use('/', userRoutes);
-
-
-
 
 
 //connect our application to database mongodb.com/cloud/atlas

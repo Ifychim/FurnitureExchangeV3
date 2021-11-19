@@ -88,3 +88,7 @@ stopped 2:07:54
 
 location info (geo-tag)
 content more direct to furniture (picture, tags, etc)
+
+-> Fixed some routing bugs with middle ware
+-> Made sure that people who are not logged in cannot create posts
+-> New bug with updating post (409 error)

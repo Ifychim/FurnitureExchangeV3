@@ -1,7 +1,10 @@
 //Creates all of the handlers for our routes. Meaning that we dont want to put our logic all in one file e.g routes/posts
 
 import mongoose  from 'mongoose';
+import express, { Router } from "express";
+
 import PostMessage from "../models/postMessage.js"; //gives us access to the postmessage model
+
 
 export const getPosts = async (req, res) => {
     try {
@@ -21,13 +24,14 @@ export const getPosts = async (req, res) => {
 export const createPost = async (req,res) => {
     //req.body allows you to access data in a string or JSON object from the client side. e.g form
     const post = req.body;
-    const newPost = new PostMessage(post);
+    const newPost = new PostMessage({...post, creator: req.userId, createdAt: new Date().toISOString()});
 
     try {
         await newPost.save();
         //HTML response 201 that ensures data was created successfully "CREATED 201" -> https://www.w3.org/Protocols/HTTP/HTRESP.html
         //res.status(201).json(postMessages);
         res.status(201).json(newPost);
+        console.log("Post Created");
     }catch(error) {
         res.status(409).json({message:error.message});
     }
@@ -51,6 +55,7 @@ export const updatePost = async(req, res) =>{
     const updatedPost = await PostMessage.findByIdAndUpdate(_id, {...post, _id}, {new:true});
 
     res.json(updatedPost);
+    console.log("Post Updated");
 
 }
 
@@ -61,7 +66,7 @@ export const deletePost = async(req, res) => {
         return res.status(404).send("No posts with that id");
     }
 
-    console.log("DELETE!");
+    console.log("Post Deleted");
     await PostMessage.findByIdAndRemove(id);
 
     res.json({message: 'Post deleted successfully'});
@@ -81,7 +86,7 @@ export const likePost = async(req, res) => {
 
     
     const index = post.likes.findIndex((id) => id === String(req.userId));
-
+    
     if(index === -1){
         //if user wants to like post
         post.likes.push(req.userId);
@@ -90,7 +95,8 @@ export const likePost = async(req, res) => {
         post.likes.filter((id)=> id !== String(req.userId));
     }
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, {new: true});
-
-    res.json(updatedPost);
+   
+    res.status(200).json(updatedPost);
 
 }
+

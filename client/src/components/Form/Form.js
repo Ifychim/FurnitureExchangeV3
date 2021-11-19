@@ -14,10 +14,10 @@ const Form = ({currentId, setCurrentId}) => {
     const [postData, setPostData] = useState({
         title: '',
         message: '',
-        creator: '',
         tags: '',
         selectedFile: ''
     });
+    const user = JSON.parse(localStorage.getItem('profile'));
 
     const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null);
     const classes = useStyles();
@@ -32,34 +32,39 @@ const Form = ({currentId, setCurrentId}) => {
     }, [post])
 
     //Once user submits, we want to send a post request with all the data user typed in.
-    const handleSubmit = (e) => {
-
-        //prevents browser from refreshing.
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        //logic to create a new post vs update an existing post. 
-        if(currentId){
-            dispatch(updatePost(currentId, postData));
-
-        }else{
-            dispatch(createPost(postData));
+    
+        if (currentId === 0) {
+            dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }));
+            clear();
+        } else {
+            dispatch(createPost({ ...postData, name: user?.result?.name }));
+            clear();
         }
-        clear();
-        
+    };
 
-    }
 
     const clear = () => {
         setCurrentId(null);
         setPostData({
             title: '',
             message: '',
-            creator: '',
             tags: '',
             selectedFile: ''
         });
     }
-
+    
+    //If user is not logged in, show a card that shows you cant create post.
+    if(!user?.result?.name){
+        return(
+            <Paper className={classes.paper}>
+                <Typography variant="h6" align="center">
+                    Please Sign in to be able to post Furniture and Exchange Furniture.
+                </Typography>
+            </Paper>
+        )
+    }
     return (
         //div with white-ish background
         <Paper className={classes.paper}>
@@ -67,14 +72,6 @@ const Form = ({currentId, setCurrentId}) => {
                 <Typography variant="h6">
                     {currentId ? 'Editing' : 'Create'} Furniture Post
                 </Typography>
-                <TextField 
-                    name="creator" 
-                    variant="outlined" 
-                    label="Creator" 
-                    fullWidth
-                    value={postData.creator} //value stored in state, whole data stored in post data
-                    onChange={(e) => setPostData({...postData, creator: e.target.value})}
-                />
 
                 <TextField 
                     name="title" 

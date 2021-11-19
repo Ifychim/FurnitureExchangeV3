@@ -1,32 +1,34 @@
 import axios from 'axios'; //used to make api calls
-import { signin } from '../actions/auth';
 
-const config = {
-    headers: {
-      //'Content-Type': 'application/x-www-form-urlencoded',
-      'Content-Type': 'application/json'
-    }
-};
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+
+
+//const url = 'http://localhost:5000/posts'; //returns all the posts we have in the database (url pointing to our back-end route)
+//export const createPost = (newPost) => axios.post(url, JSON.stringify(newPost), config);
+//export const deletePost = (id) => axios.delete(`${url}/${id}`);
+//export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
+//export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
 
 //url that points to our back-end route
-const url = 'http://localhost:5000/posts'; //returns all the posts we have in the database (url pointing to our back-end route)
-const url2 = 'http://localhost:5000/user';
+const API = axios.create({ baseURL: 'http://localhost:5000' });
 
-export const fetchPosts = () => axios.get(url);
+//Helps our middle ware work by adding something specific to each one of our request. We need to send token to the back-end so we can verify that user is logged in.
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem('profile')) {
 
-export const createPost = (newPost) => axios.post(url, JSON.stringify(newPost), config);
+    //Bearer token {token being parsed with JSON}
+    req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('profile')).token}`;
+  }
 
-//Error here....
-export const updatePost = (id, updatedPost) => axios.patch(`${url}/${id}`, updatedPost);
+  return req;
+});
 
-export const deletePost = (id) => axios.delete(`${url}/${id}`);
+export const fetchPosts = () => API.get('/posts');
+export const createPost = (newPost) => API.post('/posts', newPost);
+export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost);
+export const deletePost = (id) => API.delete(`/posts/${id}`);
+export const likePost = (id) => API.patch(`/posts/${id}/likePost`);
 
-export const likePost = (id) => axios.patch(`${url}/${id}/likePost`);
-
-export const signIn = (formData) => axios.post(url2, JSON.stringify(formData), config);
-
+export const signIn = (formData) => API.post('/user/signin', formData);
 export const signUp = (formData) => API.post('/user/signup', formData);
 
-//problem with middle-ware
