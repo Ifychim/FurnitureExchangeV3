@@ -102,4 +102,6 @@ can add notification tab that enables users to know when another user liked thei
 
 -> Fixed routing issue, a logged in user can not visit /auth page. Redirects user to posts page.
 -> Refactor Home component to use Pagination.
--> Implemented search by Furniture and Search by Tag (404 bug -___-)
+-> Implemented search by Furniture and Search by Tag (404 bug)
+-> Implemented pagination but there is a bug...
+-> changed front end a little bit

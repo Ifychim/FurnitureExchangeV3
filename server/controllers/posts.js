@@ -7,14 +7,22 @@ import PostMessage from "../models/postMessage.js"; //gives us access to the pos
 
 
 export const getPosts = async (req, res) => {
+    const {page} = req.query;
+
     try {
+        
+        //number of posts per page
+        const LIMIT = 8;
+        const startIndex = (Number(page) - 1) * LIMIT; //get start index of a post on a specific page
+        const total = await PostMessage.countDocuments({});//Count all the posts we have
+
         //retrieving all the posts that exist in the database. Async function
-        const postMessages = await PostMessage.find();
+        const posts = await PostMessage.find().sort({_id: -1}).limit(LIMIT).skip(startIndex);
 
        // console.log(postMessages);
 
         //HTML response 200 that ensures data was fulfilled "Response OK" -> https://www.w3.org/Protocols/HTTP/HTRESP.html
-        res.status(200).json(postMessages);
+        res.status(200).json({data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total/LIMIT)});
     } catch (error) {
         //Return Not found 
         res.status(404).json({message:error.message});

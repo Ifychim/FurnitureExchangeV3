@@ -35,17 +35,18 @@ const Home = () => {
     const [search, setSearch] = useState('');
     const [tags, setTags] = useState([]);
 
-    useEffect(()=> {
+   /* useEffect(()=> {
         dispatch(getPosts());
     }, [currentId, dispatch]);
-
+    */
 
     const searchPost = () => {
         if(search.trim()) {
             //dispatch some logic if we have a serach term -> fetch search post. Must tell database to only return post that matches our query
             //a search query can either be for furniture or by tags. if its by tags, we must transform array based data to string data using join() method.
             dispatch(getPostsBySearch({search, tags: tags.join(',')}));
-            history.push(`/posts/search?searchQuery=${search || 'none'} & tags=${tags.join(',')}`);
+            //Retuns page that matches data that matches search input
+           //history.push(`/posts/search?searchQuery=${search || 'none'} & tags=${tags.join(',')}`);
         }else{
             history.push('/');
         }
@@ -100,7 +101,7 @@ const Home = () => {
                     </AppBar>
                     <Form currentId={currentId} setCurrentId={setCurrentId}/>
                     <Paper elevation={6}>
-                        <Pagination/>
+                        <Pagination page={page}/>
                     </Paper>
                 </Grid>
 

@@ -44,10 +44,10 @@ const Navbar = () => {
         <AppBar className={classes.appBar} position = "static" color="inherit">
             <div className={classes.brandContainer}> 
 
-                <Typography className ={classes.heading} variant="h2" align="center" height="40" component={Link} to="/">
+                <Typography  className ={classes.heading} variant="h4" align="center" height="40" component={Link} to="/">
                     Furniture Exchange
                 </Typography>
-                <img className ={classes.img} src={furnitureExchange} alt="furnitureExchange" height="60"/>
+               
             </div>
             <Toolbar className={classes.toolbar}>
                 {user?.result ? (
