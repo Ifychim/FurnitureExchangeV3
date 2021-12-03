@@ -8,8 +8,11 @@ import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import PostDetails from './components/PostDetails/PostDetails';
 
-//<Route path="/posts/:id" component={PostDetails}/> stopped at 18:28
+//<Route path="/posts/:id" component={PostDetails}/> stopped at 21:00
 const App = () => {
+
+    const user = JSON.parse(localStorage.getItem('profile'));
+
     return (
         //Container centers everything with max width of large.
 
@@ -23,7 +26,7 @@ const App = () => {
                     <Route path="/posts" exact component={Home}/>
                     <Route path="/posts/search" exact component={Home}/>
                     <Route path="/posts/:id" component={PostDetails}/>
-                    <Route path="/auth" exact component={Auth}/>
+                    <Route path="/auth" exact component={()=> (!user ? <Auth /> : <Redirect to="/posts"/>)}/>
                 </Switch>
 
             </Container>
@@ -33,4 +36,4 @@ const App = () => {
 
 }
 
-export default App
+export default App;
