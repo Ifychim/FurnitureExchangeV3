@@ -36,6 +36,7 @@ app.use('/user', userRoutes);
 app.use('/posts', postRoutes);
 
 
+
 //connect our application to database mongodb.com/cloud/atlas
 //Environmental variable to store connection URL
 //const CONNECTION_URL = "mongodb+srv://ifychim:asdasdasd1@furnitureexchangecluste.mzrrn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";

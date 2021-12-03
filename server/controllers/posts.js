@@ -21,6 +21,28 @@ export const getPosts = async (req, res) => {
     }
 }
 
+//params and query mean different things
+//query => /posts?page=1 => means query where page=1
+//params => /posts/123 => id = 123 => get a specific resource
+export const getPostsBySearch = async (req,res) => {
+
+    const {searchQuery, tags} = req.query;
+
+    try{
+        const title = new RegExp(searchQuery, 'i'); //i stands for ignore case in Regex
+
+        //find all the posts that match one of the two criteria. 1- title, is ttile tha sme as frontend. Is one of tags in array of tags equal to the tags in frontend.
+        const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ]});
+        //const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ]});
+        
+        req.json({data:posts});
+
+    }catch (error){
+       
+        res.status(404).json({message: error.message})
+    }
+}
+
 export const createPost = async (req,res) => {
     //req.body allows you to access data in a string or JSON object from the client side. e.g form
     const post = req.body;
