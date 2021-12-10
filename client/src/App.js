@@ -8,7 +8,7 @@ import Home from "./components/Home/Home";
 import Auth from "./components/Auth/Auth";
 import PostDetails from './components/PostDetails/PostDetails';
 
-//<Route path="/posts/:id" component={PostDetails}/> stopped at 21:00
+
 const App = () => {
 
     const user = JSON.parse(localStorage.getItem('profile'));

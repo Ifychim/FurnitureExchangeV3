@@ -34,3 +34,4 @@ export const signUp = (formData) => API.post('/user/signup', formData);
 
 //query parameter
 export const fetchPostsBySearch = (searchQuery) => API.get(`/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`);
+//export const fetchPostsBySearch = (searchQuery) => console.log("here");

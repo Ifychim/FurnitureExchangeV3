@@ -4,16 +4,22 @@ import mongoose  from 'mongoose';
 import express, { Router } from "express";
 
 import PostMessage from "../models/postMessage.js"; //gives us access to the postmessage model
+//import router from '../routes/posts.js';
 
+const router = express.Router();
 
 export const getPosts = async (req, res) => {
-    const {page} = req.query;
+    
+    const { page } = req.query;
+    //console.log(page);
 
     try {
         
-        //number of posts per page
+       
+       /* //number of posts per page
         const LIMIT = 8;
-        const startIndex = (Number(page) - 1) * LIMIT; //get start index of a post on a specific page
+        //const startIndex = (Number(page) - 1) * LIMIT; //get start index of a post on a specific page
+        const startIndex = 1; //get start index of a post on a specific page
         const total = await PostMessage.countDocuments({});//Count all the posts we have
 
         //retrieving all the posts that exist in the database. Async function
@@ -22,8 +28,13 @@ export const getPosts = async (req, res) => {
        // console.log(postMessages);
 
         //HTML response 200 that ensures data was fulfilled "Response OK" -> https://www.w3.org/Protocols/HTTP/HTRESP.html
-        res.status(200).json({data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total/LIMIT)});
+        res.status(200).json({data: posts, currentPage: 1, numberOfPages: Math.ceil(total/LIMIT)});
+        */
+       const postMessages = await PostMessage.find();
+
+       res.status(200).json(postMessages);
     } catch (error) {
+        console.log("Get Post Controller Error");
         //Return Not found 
         res.status(404).json({message:error.message});
     }
@@ -34,20 +45,31 @@ export const getPosts = async (req, res) => {
 //params => /posts/123 => id = 123 => get a specific resource
 export const getPostsBySearch = async (req,res) => {
 
-    const {searchQuery, tags} = req.query;
+    const { searchQuery, tags } = req.query;
 
-    try{
-        const title = new RegExp(searchQuery, 'i'); //i stands for ignore case in Regex
+    try {
+        const title = new RegExp(searchQuery, "i");
 
-        //find all the posts that match one of the two criteria. 1- title, is ttile tha sme as frontend. Is one of tags in array of tags equal to the tags in frontend.
         const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ]});
-        //const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ]});
-        
-        req.json({data:posts});
+
+        console.log(posts);
+        res.json({ data: posts });
 
     }catch (error){
-       
+        console.log("Get Post By Search Controller Error");
         res.status(404).json({message: error.message})
+    }
+}
+
+export const getPost = async (req, res) => { 
+    const { id } = req.params;
+
+    try {
+        const post = await PostMessage.findById(id);
+        
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
 }
 
@@ -129,4 +151,6 @@ export const likePost = async(req, res) => {
     res.status(200).json(updatedPost);
 
 }
+
+export default router;
 

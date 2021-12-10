@@ -8,10 +8,11 @@ import {Grid, CircularProgress} from '@material-ui/core';
 
 import useStyles from "./styles";
 
-const Posts = ({setCurrentId}) => {
+const Posts = ({ setCurrentId }) => {
     //const classes = useStyles();
-    const posts = useSelector((state)=> state.posts);
+    const posts = useSelector((state) => state.posts);
     const classes = useStyles();
+    
     
     //Structing grid layout for posts. If there is no posts, return circular progress (spinner) else, return grid layout of our posts
     return (
@@ -19,7 +20,7 @@ const Posts = ({setCurrentId}) => {
             <Grid className ={classes.container} container alignItems="stretch" spacing={3} >
                 {
                     posts.map((post)=>(
-                        <Grid key={post.id} item xs={12} sm={6} md={6} lg={4}>
+                        <Grid key={post._id} item xs={12} sm={12} md={6} lg={3}>
                             <Post post={post} setCurrentId={setCurrentId}/>
                         </Grid>
                     ))

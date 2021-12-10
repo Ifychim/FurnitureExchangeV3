@@ -13,7 +13,7 @@ import {FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH} from "../const
         case FETCH_BY_SEARCH:
             return {
                 ...state,
-                posts:  action.payload
+                posts: action.payload
                 };
         case CREATE:
             return [...state, action.payload]; //spread post data and add a new post.

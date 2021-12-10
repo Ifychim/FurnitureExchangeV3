@@ -31,24 +31,28 @@ const Home = () => {
     const classes = useStyles();
 
     //states
-    const [currentId, setCurrentId] = useState(null);
+    const [currentId, setCurrentId] = useState(0);
     const [search, setSearch] = useState('');
     const [tags, setTags] = useState([]);
 
-   /* useEffect(()=> {
+    //use effect hook triggers once all components are rendered on front-end
+    useEffect(()=> {
         dispatch(getPosts());
+        //dispatch(getPostsBySearch());
     }, [currentId, dispatch]);
-    */
+    
 
     const searchPost = () => {
-        if(search.trim()) {
+        if(search.trim() || tags) {
             //dispatch some logic if we have a serach term -> fetch search post. Must tell database to only return post that matches our query
             //a search query can either be for furniture or by tags. if its by tags, we must transform array based data to string data using join() method.
             dispatch(getPostsBySearch({search, tags: tags.join(',')}));
+
             //Retuns page that matches data that matches search input
-           //history.push(`/posts/search?searchQuery=${search || 'none'} & tags=${tags.join(',')}`);
+            history.push(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
         }else{
-            history.push('/');
+           history.push('/');
+           
         }
     };
 
@@ -59,15 +63,11 @@ const Home = () => {
         }
     };
 
-    //
-    const handleAdd = (tag) =>{
-        //return the current state of tags + append new tag
-        return setTags([...tags, tag]);
-    };
+    //return the current state of tags + append new tag
+    const handleAdd = (tag) => setTags([...tags, tag]); 
 
-    const handleDelete = (tagToDelete) => {
-        return setTags(tags.filter((tag) => tag !== tagToDelete));
-    };
+     //return the current state of tags + filter from tags array the tag to delete
+    const handleDelete = (tagToDelete) => setTags(tags.filter((tag) => tag !== tagToDelete)); 
 
     return  (
         <Grow in>
@@ -83,7 +83,7 @@ const Home = () => {
                         <TextField 
                             name="search"  
                             variant="outlined" 
-                            label="Search for Furniture"
+                            label="Search by Furniture Name"
                             onKeyPress={handleKeyPress}
                             fullWidth
                             value={search}
@@ -94,14 +94,14 @@ const Home = () => {
                         value={tags}
                         onAdd={handleAdd}
                         onDelete={handleDelete}
-                        label="Search by Tags"
+                        label="Search by Tag"
                         variant="outlined"
                     />
                     <Button onClick={searchPost} className={classes.searchButton} color="primary" variant="contained">Search</Button>
                     </AppBar>
                     <Form currentId={currentId} setCurrentId={setCurrentId}/>
                     <Paper elevation={6}>
-                        <Pagination page={page}/>
+                        <Pagination />
                     </Paper>
                 </Grid>
 

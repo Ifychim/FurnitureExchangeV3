@@ -10,9 +10,13 @@ export const getPosts = (page) => async (dispatch) => {
         //get data from backend
         const {data} = await api.fetchPosts(page);
         //dispatch data to reducer
-        console.log(data);
+        
         dispatch({type: FETCH_ALL, payload: data});
+
+        console.log("getpost action dispatch \ndata: ");
+        console.log(data);
     } catch (error) {
+        console.log("getpost action error")
         console.log(error);
     }
 };
@@ -21,10 +25,13 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     try{
         //communicate with back-end
         const {data: {data}} = await api.fetchPostsBySearch(searchQuery);
-
         dispatch({type: FETCH_BY_SEARCH, payload: data});
-        console.log(data);
+        
+        //const {data} = await api.fetchPostsBySearch(searchQuery);    
+        console.log("getpostbysearch action dispatch \n data: uncomment at actions/getpostbysearch");
+        //console.log(data);
     }catch(error){
+        console.log("getpostbysearch action error");
         console.log(error);
     }
 }
