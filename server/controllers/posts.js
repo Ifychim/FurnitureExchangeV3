@@ -11,28 +11,24 @@ const router = express.Router();
 export const getPosts = async (req, res) => {
     
     const { page } = req.query;
-    //console.log(page);
-
     try {
         
        
-       /* //number of posts per page
+        //number of posts per page
         const LIMIT = 8;
-        //const startIndex = (Number(page) - 1) * LIMIT; //get start index of a post on a specific page
-        const startIndex = 1; //get start index of a post on a specific page
+        const startIndex = (Number(page) - 1) * LIMIT; //get start index of every page
         const total = await PostMessage.countDocuments({});//Count all the posts we have
 
         //retrieving all the posts that exist in the database. Async function
         const posts = await PostMessage.find().sort({_id: -1}).limit(LIMIT).skip(startIndex);
 
-       // console.log(postMessages);
 
         //HTML response 200 that ensures data was fulfilled "Response OK" -> https://www.w3.org/Protocols/HTTP/HTRESP.html
-        res.status(200).json({data: posts, currentPage: 1, numberOfPages: Math.ceil(total/LIMIT)});
-        */
-       const postMessages = await PostMessage.find();
+        res.status(200).json({data: posts, currentPage: Number(page), numberOfPages: Math.ceil(total/LIMIT)});
+      
+        //const postMessages = await PostMessage.find();
 
-       res.status(200).json(postMessages);
+        res.status(200).json(postMessages);
     } catch (error) {
         console.log("Get Post Controller Error");
         //Return Not found 

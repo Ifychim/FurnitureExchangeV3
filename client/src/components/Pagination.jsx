@@ -10,8 +10,10 @@ const Paginate = ({page}) => {
     const classes = useStyles();    
     const dispatch = useDispatch();
 
+    //Load data here
     useEffect(()=> {
         if(page){
+            console.log("from pagination");
             dispatch(getPosts(page));
         }
     }, [page]);

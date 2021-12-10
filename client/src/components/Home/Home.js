@@ -36,11 +36,12 @@ const Home = () => {
     const [tags, setTags] = useState([]);
 
     //use effect hook triggers once all components are rendered on front-end
-    useEffect(()=> {
+    
+    /*useEffect(()=> {
         dispatch(getPosts());
         //dispatch(getPostsBySearch());
     }, [currentId, dispatch]);
-    
+    no longer fetching page from home*/ 
 
     const searchPost = () => {
         if(search.trim() || tags) {
@@ -101,7 +102,7 @@ const Home = () => {
                     </AppBar>
                     <Form currentId={currentId} setCurrentId={setCurrentId}/>
                     <Paper elevation={6}>
-                        <Pagination />
+                        <Pagination page={page} />
                     </Paper>
                 </Grid>
 
