@@ -11,13 +11,14 @@ import useStyles from "./styles";
 const Posts = ({ setCurrentId }) => {
     //const classes = useStyles();
     //WE WERE USING AN OBJECTTTTT!!!!!!
-    const {posts} = useSelector((state) => state.posts);
+    const {posts, isLoading} = useSelector((state) => state.posts);
     const classes = useStyles();
     
-    
+    //if no posts in array, or if we are not loading, return no posts
+    if(!posts.length && !isLoading) return "No posts";
     //Structing grid layout for posts. If there is no posts, return circular progress (spinner) else, return grid layout of our posts
     return (
-        !posts?.length ? <CircularProgress/> : (
+        isLoading? <CircularProgress/> : (
             <Grid className ={classes.container} container alignItems="stretch" spacing={3} >
                 {
                     posts.map((post)=>(
