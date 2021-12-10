@@ -1,5 +1,5 @@
 //a reducer is a function that accepts state and action. based on the action type, do some logic, return action or state.
-import {FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING, END_LOADING} from "../constants/actionTypes";
+import {FETCH_ALL, FETCH_POST,  CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING, END_LOADING} from "../constants/actionTypes";
  export default (state = {isLoading: true, posts:[]}, action) => {
      
     switch(action.type) {
@@ -14,6 +14,11 @@ import {FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING,
             return {
                 ...state,
                 posts: action.payload.data,
+            }
+        case FETCH_POST:
+            return{
+                ...state,
+                post: action.payload.data,
             }
         case START_LOADING: {
             return {

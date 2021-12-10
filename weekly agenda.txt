@@ -111,4 +111,13 @@ can add notification tab that enables users to know when another user liked thei
 -> Implemented search by Furniture and Search by Tag (fixed bug with rendering searched)
 -> Loading States (with redux)
 -> Pagination is only displayed when search and tag queries are empty
--> Dynamic furniture post details page
+-> Imported data from ikea
+-> Dynamic furniture post details page (implemented but there are bugs when fetching a single post so removed)
+
+<ButtonBase
+	component="span"
+	name="test"
+	className={classes.cardAction}
+	onClick={openPost}
+>
+</ButtonBase>

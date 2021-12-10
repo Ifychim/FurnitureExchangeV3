@@ -1,6 +1,6 @@
 import * as api from '../api';
 //action constant imports. Increases scalability.
-import {FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, START_LOADING, END_LOADING} from "../constants/actionTypes";
+import {FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, FETCH_BY_SEARCH, FETCH_POST, START_LOADING, END_LOADING} from "../constants/actionTypes";
 
 //Action Creators -> functions that return actions. Actions have type and payload(data)
 
@@ -19,13 +19,37 @@ export const getPosts = (page) => async (dispatch) => {
         //end loading after data has been fetched from a single-page
         dispatch({type: END_LOADING});
 
-        console.log("getpost action dispatch \ndata: ");
+        console.log("getpost(s) action dispatch \ndata: ");
         console.log(data);
     } catch (error) {
         console.log("getpost action error")
         console.log(error);
     }
 };
+
+export const getPost = (id) => async (dispatch) => {
+
+    try {
+        //start loading once you get post from a single-page
+
+        dispatch({type: START_LOADING});
+        //get data from backend
+        const { data } = await api.fetchPost(id);
+        //dispatch data to reducer
+        
+        dispatch({ type: FETCH_POST, payload: data});
+
+        //end loading after data has been fetched from a single-page
+        dispatch({type: END_LOADING});
+
+        console.log("getpos(t) action dispatch \ndata: ");
+        console.log(data);
+    } catch (error) {
+        console.log("getpost action error")
+        console.log(error);
+    }
+};
+
 
 export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     try{
@@ -47,7 +71,7 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
 
 export const createPost = (post) => async (dispatch) => {
     try {
-        dispatch({type: START_LOADING});
+        
         const {data} = await api.createPost(post); //creating a POST api request to our backend server
         //console.log(data);
 

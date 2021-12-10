@@ -30,7 +30,7 @@ export const getPosts = async (req, res) => {
 
         //res.status(200).json(postMessages);
     } catch (error) {
-        console.log("Get Post Controller Error");
+        console.log("Get Post(s) Controller Error");
         //Return Not found 
         res.status(404).json({message:error.message});
     }
@@ -66,6 +66,7 @@ export const getPost = async (req, res) => {
         
         res.status(200).json(post);
     } catch (error) {
+        console.log("Get Post Controller Error");
         res.status(404).json({ message: error.message });
     }
 }

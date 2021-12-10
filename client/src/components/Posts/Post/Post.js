@@ -2,7 +2,7 @@
 import React  from "react";
 import moment from 'moment';
 //Styles
-import {Card, CardActions, CardContent, CardMedia, Button, Typography} from "@material-ui/core";
+import {Card, CardActions, CardContent, CardMedia, Button, Typography, ButtonBase} from "@material-ui/core";
 //icons
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -11,10 +11,13 @@ import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
 
 import useStyles from "./styles";
 
+import{useHistory} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import { deletePost, likePost } from "../../../actions/posts";
+
 const Post = ({ post, setCurrentId }) => {
     
+    const history = useHistory();
     const classes = useStyles();
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('profile'));
@@ -31,9 +34,15 @@ const Post = ({ post, setCurrentId }) => {
     
         return <><ThumbUpAltOutlined fontSize="small" />&nbsp;Like</>;
       };
+    
+    //navigate to a specific page when post is clicked
+    const openPost = () => {
+        history.push(`/posts/${post._id}`)
+    };
+    
     return (
         <Card className={classes.card} raised elevation={6}>
-            
+
             <CardMedia className={classes.media} image={post.selectedFile ||'https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png' } title={post.title} component='img'/>
             
             <div className={classes.overlay}>
@@ -59,7 +68,7 @@ const Post = ({ post, setCurrentId }) => {
             <CardContent>
                 <Typography variant ="body2" color="textSecondary" component="p" >{post.message}</Typography>
             </CardContent>
-
+            
             <CardActions className={classes.cardActions}>
                 <Button size="small" color="primary" disabled={!user?.result} onClick={()=> dispatch(likePost(post._id))}>
                     <Likes/>
