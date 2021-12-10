@@ -28,7 +28,7 @@ export const getPosts = async (req, res) => {
       
         //const postMessages = await PostMessage.find();
 
-        res.status(200).json(postMessages);
+        //res.status(200).json(postMessages);
     } catch (error) {
         console.log("Get Post Controller Error");
         //Return Not found 
@@ -39,7 +39,7 @@ export const getPosts = async (req, res) => {
 //params and query mean different things
 //query => /posts?page=1 => means query where page=1
 //params => /posts/123 => id = 123 => get a specific resource
-export const getPostsBySearch = async (req,res) => {
+export const getPostsBySearch = async (req, res) => {
 
     const { searchQuery, tags } = req.query;
 
@@ -48,8 +48,9 @@ export const getPostsBySearch = async (req,res) => {
 
         const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ]});
 
-        console.log(posts);
+       
         res.json({ data: posts });
+        console.log(posts);
 
     }catch (error){
         console.log("Get Post By Search Controller Error");

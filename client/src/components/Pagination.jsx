@@ -26,7 +26,7 @@ const Paginate = ({page}) => {
             variant="outlined"
             color="primary"
             renderItem={(item) => (
-                <PaginationItem {...item} component={Link} to={`/posts?page=${1}`}/>
+                <PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`}/>
             )}
         />
     );
