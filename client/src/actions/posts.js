@@ -11,10 +11,10 @@ export const getPosts = (page) => async (dispatch) => {
 
         dispatch({type: START_LOADING});
         //get data from backend
-        const {data} = await api.fetchPosts(page);
+        const { data: { data, currentPage, numberOfPages } } = await api.fetchPosts(page);
         //dispatch data to reducer
         
-        dispatch({type: FETCH_ALL, payload: data});
+        dispatch({ type: FETCH_ALL, payload: { data, currentPage, numberOfPages } });
 
         //end loading after data has been fetched from a single-page
         dispatch({type: END_LOADING});
@@ -31,8 +31,10 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {
     try{
         dispatch({type: START_LOADING});
         //communicate with back-end
-        const {data: {data}} = await api.fetchPostsBySearch(searchQuery);
-        dispatch({type: FETCH_BY_SEARCH, payload: data});
+        const { data: { data } } = await api.fetchPostsBySearch(searchQuery);
+        
+        dispatch({ type: FETCH_BY_SEARCH, payload: { data } });
+        dispatch({ type: END_LOADING });
         
         //const {data} = await api.fetchPostsBySearch(searchQuery);    
         console.log("getpostbysearch action dispatch \n data: uncomment at actions/getpostbysearch");

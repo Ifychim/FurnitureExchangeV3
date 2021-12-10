@@ -67,7 +67,7 @@ const Form = ({currentId, setCurrentId}) => {
     }
     return (
         //div with white-ish background
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} elevation={6}>
             <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
                 <Typography variant="h6">
                     {currentId ? 'Editing' : 'Create'} Furniture Post

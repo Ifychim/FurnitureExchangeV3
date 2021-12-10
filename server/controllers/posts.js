@@ -50,7 +50,7 @@ export const getPostsBySearch = async (req, res) => {
 
        
         res.json({ data: posts });
-        console.log(posts);
+        //console.log(posts);
 
     }catch (error){
         console.log("Get Post By Search Controller Error");

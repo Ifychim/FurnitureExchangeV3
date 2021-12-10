@@ -15,7 +15,7 @@ const Posts = ({ setCurrentId }) => {
     const classes = useStyles();
     
     //if no posts in array, or if we are not loading, return no posts
-    if(!posts.length && !isLoading) return "No posts";
+    if(!posts.length && !isLoading) return "No posts on current page";
     //Structing grid layout for posts. If there is no posts, return circular progress (spinner) else, return grid layout of our posts
     return (
         isLoading? <CircularProgress/> : (
