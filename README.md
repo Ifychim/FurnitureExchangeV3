@@ -1,8 +1,5 @@
 # FurnitureExchangeV3
-Third Attempt at Furniture Exchange LOL!!!!!!!!!
-
-
-Git Repo for a Independent Study Project with Dr. Hendrix
+Git Repo for an Independent Study Project with Dr. Hendrix
 
 
                                                     This project is done by Uchenna Chima.
